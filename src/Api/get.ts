@@ -1,5 +1,5 @@
 export const getUser = async (user: string) => {
-    const response = await fetch(`http://api.github.com/users/${user}`);
+    const response = await fetch(`https://api.github.com/users/${user}`);
     const data = await response.json();
     return data;
 }
