@@ -1,5 +1,5 @@
-export const getUser = async (user: string) => {
-    const response = await fetch(`https://api.github.com/users/${user}`);
+export const getUser = async (user: string, api_url: string | undefined) => {
+    const response = await fetch(`${api_url}/${user}`);
     const data = await response.json();
     return data;
 }

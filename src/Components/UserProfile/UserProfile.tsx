@@ -10,6 +10,9 @@ interface Props {
 export const UserProfile = (props: Props) => {
     const { user } = props;
 
+    const redirect = (url:string) => {
+        window.location.href = url;
+    }
     return (
         <>
             {!!user && (
@@ -39,6 +42,7 @@ export const UserProfile = (props: Props) => {
                         <Button
                             className="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded"
                             variant="contained"
+                            onClick={() => redirect(user.html_url)}
                         >
                             Follow
                         </Button>

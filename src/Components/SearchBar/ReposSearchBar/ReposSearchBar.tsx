@@ -1,23 +1,40 @@
 // Import necessary modules from React and MUI
-import UserInter from "../../../interfaces/userInter";
 import TextField from '@mui/material/TextField';
 import { Box } from '@mui/system';
+import RepoInter from "../../../interfaces/RepoInter";
 
 // Define types for Props
 interface Props {
-    user: UserInter | null;
-    filterRepos: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    filterRepos: (event: React.ChangeEvent<HTMLInputElement>) => void
+    filteredRepos: RepoInter[];
+    searchRepo: String;
 }
 
 // Define a component named ReposSearchBar
 export const ReposSearchBar = (props: Props) => {
-    const { user, filterRepos } = props; // Destructure user and filterRepos from props
+    const { filterRepos, filteredRepos, searchRepo } = props; // Destructure user and filterRepos from props
+
 
     return (
-        <>
+        <div>
             {/* Conditionally render search bar if user is not null */}
-            {!!user && (
-                <div className='grid-center'>
+            {
+                !!filteredRepos.length === false && !!searchRepo ? (
+                    <div className='grid-center'>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-end', mt: 2 }}>
+                            <TextField
+                                error
+                                name='search'
+                                label="Error"
+                                defaultValue="Search Repositories"
+                                helperText="Repository not found."
+                                variant="standard"
+                                onChange={filterRepos}
+                            />
+                        </Box>
+                    </div>
+                ) : (
+                    <div className='grid-center'>
                         <Box sx={{ display: 'flex', alignItems: 'flex-end', mt: 2 }}>
                             {/* Text field to allow searching for repositories */}
                             <TextField
@@ -28,9 +45,11 @@ export const ReposSearchBar = (props: Props) => {
                                 variant="standard"
                             />
                         </Box>
-                </div>
-            )}
-        </>
+                    </div >
+                )
+            }
+
+        </div >
     )
 
 }
