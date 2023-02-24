@@ -15,8 +15,9 @@ export const UserSearchBar = (props: Props) => {
     const { setSearchTerm, controlSearch, err } = props;
 
     const searchUser = (event: FormSubmitEvent) => {
-        event.preventDefault();
-        controlSearch()
+        event.preventDefault(); 
+        controlSearch(); // Github api request 
+        event.currentTarget.reset(); // reset the form fields
     }
     return (
         <div>

@@ -25,8 +25,8 @@ function App() {
   const [repos, setRepos] = useState<Array<RepoInter>>([]); // array of repos state variable
   const [searchTerm, setSearchTerm] = useState(''); // search term state variable
   const [filteredRepos, setFilteredRepos] = useState<RepoInter[]>([]); // filtered array of repos state variable
-  const [err, setErr] = useState(false);
-  const [searchRepo, setSearchRepo] = useState('');
+  const [err, setErr] = useState(false); // error control
+  const [searchRepo, setSearchRepo] = useState(''); // value search bar repositories
 
   // Define function for searching for user and their repos
   const controlSearch = async () => {
@@ -36,7 +36,7 @@ function App() {
       // Fetch user's repos using their repos URL
       const reposResponse = await getReposUser(userResponse.repos_url);
       // Update state variables with the user and their repos data
-      setErr(false)
+      setErr(false);
       setUser(userResponse);
       setRepos(reposResponse);
     } catch (error) {
@@ -44,7 +44,7 @@ function App() {
       setErr(true);
       setUser(null);
       setRepos([]);
-      setFilteredRepos([])
+      setFilteredRepos([]);
     }
   }
 
@@ -59,44 +59,41 @@ function App() {
     setFilteredRepos(filteredList);
   };
 
+  const cleanValues = () => {
+    setUser(null);
+    setRepos([]);
+    setFilteredRepos([]);
+  }
+
   // Render the app UI
   return (
     <Container maxWidth="sm">
       <Box>
-        {
+        {!!user ? (
+          <>
+            {/* Display Logo */}
+            <div onClick={cleanValues}>
+              < Logo />
+            </div>
+            {/* Search for user */}
+            < UserSearchBar setSearchTerm={setSearchTerm} controlSearch={controlSearch} err={err} />
+            {/* Profile information */}
+            <UserProfile user={user} />
+            {/* Search for repositories */}
+            <ReposSearchBar filterRepos={filterRepos} filteredRepos={filteredRepos} searchRepo={searchRepo} />
+            {/* Repositories */}
+            <RepoList repos={repos} filteredRepos={filteredRepos} />
+          </>
+        )
 
-          !!user ? (
+          : (
             <>
               {/* Display Logo */}
               < Logo />
               {/* Search for user */}
               < UserSearchBar setSearchTerm={setSearchTerm} controlSearch={controlSearch} err={err} />
-              {/* Profile information */}
-              <UserProfile user={user} />
-              {/* Search for repositories */}
-              <ReposSearchBar filterRepos={filterRepos} filteredRepos={filteredRepos} searchRepo={searchRepo}/>
-              {/* Error control for repos
-              {
-                !!filteredRepos.length === false && !!searchRepo && (
-                  <div className='text-danger grid-center'>'no existe'</div>
-                )
-              } */}
-              {/* Repositories */}
-              <RepoList repos={repos} filteredRepos={filteredRepos} />
             </>
-          )
-
-            : (
-              <>
-                {/* Display Logo */}
-                < Logo />
-                {/* Search for user */}
-                < UserSearchBar setSearchTerm={setSearchTerm} controlSearch={controlSearch} err={err} />
-
-              </>
-            )
-
-        }
+          )}
       </Box>
     </Container>
   );
