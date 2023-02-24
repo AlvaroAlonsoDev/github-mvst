@@ -19,6 +19,5 @@ Future improvements for this project include:
     Add an option to change the theme of the application, allowing users to customise their user experience.
     Add functionality to search by programming language.
     Create a list of favourites so that users can save their favourite repositories and return to them later.
-    Add functionality to search and follow other GitHub users from within the application.
 
 Overall, I enjoyed working on this project and learned a lot about React and TypeScript. I look forward to continuing to improve upon this project in the future.
