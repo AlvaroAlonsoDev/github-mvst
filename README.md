@@ -1,6 +1,6 @@
 GitHub User-Repositories Search App
 
-This is a small web application that allows users to search for a GitHub username and view the user's repositories. The app is built using React, TypeScript, Material UI and bootstrap. Everything has functionality, starting with the logo button that takes you back to the homepage, the "follow" button that redirects you to the user's profile on the official Github page, as well as the repositories. Finally, it should be noted that I have implemented several error controls in the user search and repository search.
+This is a small web application that allows users to search for a GitHub username and view the user's repositories. The app is built using React, TypeScript, Material UI and Bootstrap. Everything has functionality, starting with the logo button that takes you back to the homepage, the "follow" button that redirects you to the user's profile on the official Github page, as well as the repositories. Finally, it should be noted that I have implemented several error controls in the user search and repository search.
 
 To run the app on your local machine, follow these steps:
 
